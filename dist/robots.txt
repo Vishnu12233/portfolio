@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Sitemap is intentionally omitted until the production domain is configured.

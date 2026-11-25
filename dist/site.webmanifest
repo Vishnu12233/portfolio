@@ -1,0 +1,17 @@
+{
+  "name": "Vishnu K — AI & Full-Stack Developer",
+  "short_name": "Vishnu K",
+  "description": "Portfolio of Vishnu K — AI developer, full-stack engineer, and ECE student.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#F8FAFC",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
