@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @page {
+        size: 1200px 630px;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #f8fafc;
+        color: #111827;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .canvas {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 78% 45%, rgba(124, 58, 237, 0.13), transparent 34%),
+          radial-gradient(circle at 92% 76%, rgba(6, 182, 212, 0.12), transparent 30%),
+          #f8fafc;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(ellipse at 50% 45%, black 20%, transparent 78%);
+      }
+
+      .top-rule {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #7c3aed, #2563eb, #06b6d4);
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        padding: 66px 72px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: #111827;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: -0.05em;
+      }
+
+      .brand-name {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      .brand-name span {
+        color: #7c3aed;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #d1fae5;
+        background: rgba(236, 253, 245, 0.85);
+        color: #047857;
+        border-radius: 99px;
+        padding: 8px 14px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #10b981;
+      }
+
+      .main {
+        max-width: 760px;
+      }
+
+      .eyebrow {
+        font-family: Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 70px;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+
+      .gradient {
+        background: linear-gradient(100deg, #7c3aed 4%, #2563eb 56%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .sub {
+        margin: 24px 0 0;
+        font-size: 17px;
+        line-height: 1.55;
+        color: #64748b;
+        max-width: 570px;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #e5e7eb;
+        padding-top: 18px;
+        font-family: Consolas, monospace;
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+
+      .footer strong {
+        color: #475569;
+        font-weight: 600;
+      }
+
+      .orb {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        right: 54px;
+        top: 100px;
+        z-index: 1;
+      }
+
+      .orb .ring {
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(124, 58, 237, 0.18);
+        border-radius: 50%;
+      }
+
+      .orb .ring.two {
+        inset: 38px;
+        border-style: dashed;
+        border-color: rgba(37, 99, 235, 0.24);
+      }
+
+      .orb .ring.three {
+        inset: 76px;
+        border-color: rgba(6, 182, 212, 0.25);
+      }
+
+      .orb .core {
+        position: absolute;
+        inset: 120px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #a78bfa, #7c3aed 40%, #2563eb 100%);
+        box-shadow:
+          0 0 70px rgba(124, 58, 237, 0.4),
+          inset -18px -22px 50px rgba(37, 99, 235, 0.35),
+          inset 12px 14px 28px rgba(255, 255, 255, 0.32);
+      }
+
+      .orb .core::after {
+        content: '';
+        position: absolute;
+        left: 24%;
+        top: 18%;
+        width: 26%;
+        height: 20%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        filter: blur(6px);
+        transform: rotate(-25deg);
+      }
+
+      .orb .orbit {
+        position: absolute;
+        width: 430px;
+        height: 160px;
+        left: -15px;
+        top: 120px;
+        border: 1px solid rgba(37, 99, 235, 0.3);
+        border-radius: 50%;
+        transform: rotate(-22deg);
+      }
+
+      .orb .orbit.two {
+        width: 420px;
+        height: 150px;
+        top: 125px;
+        left: -10px;
+        transform: rotate(58deg);
+        border-color: rgba(6, 182, 212, 0.3);
+      }
+
+      .orb .satellite {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #7c3aed;
+        border-radius: 3px;
+        transform: rotate(45deg);
+        top: 78px;
+        left: 32px;
+      }
+
+      .orb .satellite.cyan {
+        background: #06b6d4;
+        top: 314px;
+        left: 344px;
+      }
+
+      .orb .satellite.blue {
+        width: 8px;
+        height: 8px;
+        background: #2563eb;
+        top: 232px;
+        left: 390px;
+      }
+
+      .meta {
+        position: absolute;
+        right: 72px;
+        bottom: 96px;
+        z-index: 3;
+        text-align: right;
+        font-family: Consolas, monospace;
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas">
+      <div class="grid"></div>
+      <div class="top-rule"></div>
+
+      <div class="orb">
+        <div class="ring"></div>
+        <div class="ring two"></div>
+        <div class="ring three"></div>
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="core"></div>
+        <div class="satellite"></div>
+        <div class="satellite cyan"></div>
+        <div class="satellite blue"></div>
+      </div>
+
+      <div class="content">
+        <header class="header">
+          <div class="brand">
+            <div class="mark">VK</div>
+            <div class="brand-name">VK<span>.</span></div>
+          </div>
+          <div class="tag"><span class="dot"></span> Available for opportunities</div>
+        </header>
+
+        <div class="main">
+          <p class="eyebrow">Hello, I'm Vishnu K</p>
+          <h1>
+            Turning Ideas Into<br />
+            <span class="gradient">Intelligent Experiences.</span>
+          </h1>
+          <p class="sub">
+            AI Developer. Full-Stack Engineer. ECE Student. Building intelligent
+            applications that connect software and the real world.
+          </p>
+        </div>
+
+        <footer class="footer">
+          <span><strong>Portfolio</strong> / 2026</span>
+          <span>AI · Full-Stack · Embedded</span>
+        </footer>
+      </div>
+
+      <div class="meta">vishnu18042007@gmail.com</div>
+    </div>
+  </body>
+</html>

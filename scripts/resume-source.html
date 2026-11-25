@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vishnu K — Resume</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #111827;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 16mm 16mm 14mm;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .top-rule {
+        height: 3px;
+        background: linear-gradient(90deg, #7c3aed, #2563eb, #06b6d4);
+        border-radius: 99px;
+        margin-bottom: 9mm;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12mm;
+      }
+
+      .monogram {
+        width: 13mm;
+        height: 13mm;
+        border-radius: 4mm;
+        background: #111827;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        margin-bottom: 5mm;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1;
+        letter-spacing: -0.045em;
+        font-weight: 700;
+      }
+
+      .role {
+        margin: 3mm 0 0;
+        font-size: 9.5px;
+        line-height: 1.5;
+        color: #64748b;
+        max-width: 100mm;
+      }
+
+      .contact {
+        text-align: right;
+        font-size: 8.5px;
+        line-height: 1.8;
+        color: #475569;
+        white-space: nowrap;
+      }
+
+      .contact a {
+        color: #111827;
+        text-decoration: none;
+      }
+
+      .contact .label {
+        display: inline-block;
+        color: #7c3aed;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 7px;
+        margin-right: 2mm;
+      }
+
+      .section {
+        margin-top: 8mm;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+        margin-bottom: 4mm;
+      }
+
+      .section-title span:first-child {
+        font-size: 7.5px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #7c3aed;
+        white-space: nowrap;
+      }
+
+      .section-title .line {
+        height: 1px;
+        background: #e5e7eb;
+        flex: 1;
+      }
+
+      .section-title .index {
+        font-size: 7px;
+        color: #94a3b8;
+        font-family: Consolas, monospace;
+      }
+
+      .summary {
+        font-size: 9.5px;
+        line-height: 1.65;
+        color: #475569;
+        margin: 0;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8mm;
+      }
+
+      .edu-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 4mm;
+        padding: 5mm;
+        background: linear-gradient(135deg, #ffffff, #faf5ff);
+      }
+
+      .edu-card .period {
+        font-size: 7px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #7c3aed;
+        font-weight: 700;
+      }
+
+      .edu-card h3 {
+        margin: 2mm 0 1mm;
+        font-size: 12px;
+        line-height: 1.35;
+        letter-spacing: -0.02em;
+      }
+
+      .edu-card p {
+        margin: 0;
+        font-size: 8.5px;
+        line-height: 1.6;
+        color: #64748b;
+      }
+
+      .edu-meta {
+        display: flex;
+        gap: 3mm;
+        margin-top: 4mm;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #e5e7eb;
+        background: #ffffff;
+        border-radius: 99px;
+        padding: 1.5mm 3mm;
+        font-size: 7px;
+        color: #475569;
+      }
+
+      .pill.accent {
+        border-color: #ddd6fe;
+        background: #f5f3ff;
+        color: #6d28d9;
+      }
+
+      .skill-group {
+        margin-bottom: 3.5mm;
+      }
+
+      .skill-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .skill-group h4 {
+        margin: 0 0 1.5mm;
+        font-size: 7px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5mm;
+      }
+
+      .chip {
+        border: 1px solid #e5e7eb;
+        border-radius: 99px;
+        padding: 1.2mm 2.5mm;
+        font-size: 7.5px;
+        color: #334155;
+        background: #ffffff;
+      }
+
+      .project {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 4mm;
+        margin-bottom: 4mm;
+      }
+
+      .project:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .project-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 4mm;
+      }
+
+      .project h3 {
+        margin: 0;
+        font-size: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .project .tech {
+        font-size: 7px;
+        color: #7c3aed;
+        white-space: nowrap;
+      }
+
+      .project p {
+        margin: 1.5mm 0 2.5mm;
+        font-size: 8.5px;
+        line-height: 1.55;
+        color: #64748b;
+      }
+
+      .project .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2mm;
+      }
+
+      .project .tags span {
+        font-size: 6.5px;
+        color: #475569;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 99px;
+        padding: 1mm 2mm;
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 8mm;
+        left: 16mm;
+        right: 16mm;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #e5e7eb;
+        padding-top: 3mm;
+        font-size: 7px;
+        color: #94a3b8;
+      }
+
+      .footer strong {
+        color: #111827;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="top-rule"></div>
+
+      <header class="header">
+        <div>
+          <div class="monogram">VK</div>
+          <h1>Vishnu K</h1>
+          <p class="role">
+            AI Developer · Full-Stack Developer · Electronics &amp; Communication
+            Engineering Student
+          </p>
+        </div>
+        <div class="contact">
+          <div><span class="label">Email</span><a href="mailto:vishnu18042007@gmail.com">vishnu18042007@gmail.com</a></div>
+          <div><span class="label">GitHub</span><a href="https://github.com/Vishnu12233">github.com/Vishnu12233</a></div>
+          <div><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/vishnu-vishnu-48a1a9332/">linkedin.com/in/vishnu-vishnu-48a1a9332</a></div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-title">
+          <span>Profile</span><span class="line"></span><span class="index">01</span>
+        </div>
+        <p class="summary">
+          I'm Vishnu K, an aspiring AI and Full-Stack Developer with a passion
+          for building intelligent applications, modern web experiences, and
+          innovative technology solutions. I enjoy combining artificial
+          intelligence, software engineering, and electronics to turn creative
+          ideas into practical products.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span>Education</span><span class="line"></span><span class="index">02</span>
+        </div>
+        <div class="grid-2">
+          <div class="edu-card">
+            <p class="period">2024 — 2028</p>
+            <h3>Electronics and Communication Engineering</h3>
+            <p>VSB Engineering College</p>
+            <div class="edu-meta">
+              <span class="pill accent">CGPA 7.75</span>
+              <span class="pill">In progress</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group">
+              <h4>Academic foundation</h4>
+              <div class="chips">
+                <span class="chip">Electronics</span>
+                <span class="chip">Communication</span>
+                <span class="chip">Embedded systems</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Focus</h4>
+              <div class="chips">
+                <span class="chip">Artificial Intelligence</span>
+                <span class="chip">Full-Stack Development</span>
+                <span class="chip">Emerging technologies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span>Technical Skills</span><span class="line"></span><span class="index">03</span>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="skill-group">
+              <h4>Programming</h4>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">Java</span>
+                <span class="chip">C</span><span class="chip">JavaScript</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Frontend</h4>
+              <div class="chips">
+                <span class="chip">HTML</span><span class="chip">CSS</span>
+                <span class="chip">React</span><span class="chip">Tailwind CSS</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Backend</h4>
+              <div class="chips">
+                <span class="chip">FastAPI</span><span class="chip">PostgreSQL</span>
+                <span class="chip">Supabase</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group">
+              <h4>AI &amp; Technologies</h4>
+              <div class="chips">
+                <span class="chip">Artificial Intelligence</span>
+                <span class="chip">Machine Learning</span>
+                <span class="chip">LLM Integration</span>
+                <span class="chip">Computer Vision</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Tools</h4>
+              <div class="chips">
+                <span class="chip">Git</span><span class="chip">GitHub</span>
+                <span class="chip">VS Code</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span>Selected Projects</span><span class="line"></span><span class="index">04</span>
+        </div>
+
+        <article class="project">
+          <div class="project-head">
+            <h3>AI Skill Gap Analyzer</h3>
+            <span class="tech">React · AI · FastAPI · Supabase</span>
+          </div>
+          <p>
+            An AI-powered career guidance platform that analyzes student skills,
+            identifies skill gaps, and generates personalized career roadmaps.
+          </p>
+          <div class="tags">
+            <span>AI</span><span>Web Development</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <h3>NIECP-AI</h3>
+            <span class="tech">React · TypeScript · FastAPI · PostgreSQL · AI</span>
+          </div>
+          <p>
+            National Industrial Ease &amp; Compliance Platform – AI. An intelligent
+            platform designed to simplify industrial approval workflows,
+            regulatory compliance, approval discovery, dependency graphs, and
+            documentation management.
+          </p>
+          <div class="tags">
+            <span>AI</span><span>Web Development</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <h3>Health Guard AI</h3>
+            <span class="tech">Python · AI · Web Development</span>
+          </div>
+          <p>
+            An AI-powered healthcare concept focused on intelligent health
+            monitoring and predictive assistance.
+          </p>
+          <div class="tags">
+            <span>AI</span><span>Web Development</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <h3>Dual-Axis Solar Tracking System</h3>
+            <span class="tech">Arduino Uno · Embedded C · LDR · Servo · IoT</span>
+          </div>
+          <p>
+            An Arduino-based solar tracking system that automatically adjusts the
+            direction of a solar panel using four LDR sensors and servo motors.
+          </p>
+          <div class="tags">
+            <span>IoT &amp; Embedded</span>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <span><strong>Vishnu K</strong> · Portfolio resume</span>
+        <span>Generated from verified portfolio information</span>
+      </footer>
+    </main>
+  </body>
+</html>
